@@ -1,14 +1,12 @@
 import { createReducer } from "reduxsauce";
 import { Types } from "../actions/workers.actions";
 
-export const INITIAL_STATE = { workers: [] };
+export const INITIAL_STATE = [];
 
-export const SET = (state, { data }) => {
-  return { ...state, data };
-};
+export const ADD = (state, { data = [] }) => data;
 
 export const HANDLERS = {
-  [Types.SET]: SET
+  [Types.ADD]: ADD
 };
 
 export default createReducer(INITIAL_STATE, HANDLERS);

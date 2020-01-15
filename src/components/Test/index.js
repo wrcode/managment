@@ -5,7 +5,8 @@ import { compose, lifecycle } from "recompose";
 import Test from "./Test";
 
 const mapDispatchToProps = {
-  fetchWorkers: Creators.get
+  fetchWorkers: Creators.get,
+  createWorker: Creators.set
 };
 
 const mapStateToProps = state => ({

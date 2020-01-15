@@ -6,12 +6,19 @@ function* getWorkers(action) {
   try {
     const workers = yield call(Api.getWorkers);
 
-    yield put(Creators.set());
+    yield put(Creators.add(workers));
+  } catch (e) {}
+}
+
+function* createWorker({ data }) {
+  try {
+    yield call(Api.createWorker, data);
   } catch (e) {}
 }
 
 function* sagas() {
   yield takeLatest(Types.GET, getWorkers);
+  yield takeLatest(Types.SET, createWorker);
 }
 
 export default sagas;
