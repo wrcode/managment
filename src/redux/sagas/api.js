@@ -10,11 +10,22 @@ const createWorker = data =>
       Accept: "application/json",
       "Content-Type": "application/json"
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify({ type: "create", ...data })
+  });
+
+const deleteWorker = data =>
+  fetch(`${endpoint}/workers`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ type: "delete", ...data })
   });
 
 const Api = {
   getWorkers,
-  createWorker
+  createWorker,
+  deleteWorker
 };
 export default Api;

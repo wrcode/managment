@@ -6,7 +6,8 @@ import Test from "./Test";
 
 const mapDispatchToProps = {
   fetchWorkers: Creators.get,
-  createWorker: Creators.set
+  createWorker: Creators.set,
+  deleteWorker: Creators.drop
 };
 
 const mapStateToProps = state => ({

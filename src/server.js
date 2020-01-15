@@ -21,9 +21,19 @@ const createEndpoint = tableName => {
   });
 
   server.post(`/${tableName}`, ({ body }, res) => {
-    db.insertTableContent(tableName, location, body, () =>
-      res.send({ ok: true })
-    );
+    switch (body.type) {
+      case "create":
+        db.insertTableContent(tableName, location, body, () =>
+          res.send({ ok: true })
+        );
+        break;
+
+      case "delete":
+        db.deleteRow(tableName, location, { id: body.id }, (succ, msg) => {
+          res.send({ ok: true });
+        });
+        break;
+    }
   });
 };
 

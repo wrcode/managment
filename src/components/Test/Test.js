@@ -1,12 +1,16 @@
 import React from "react";
-import { isEmpty } from "ramda";
 
-const Test = ({ fetchWorkers, createWorker, workers }) => (
+const Test = ({ fetchWorkers, createWorker, deleteWorker, workers }) => (
   <div>
     <div>
-      {isEmpty(workers) && workers.map(({ id }, i) => <div key={i}>{id}</div>)}
+      {workers.map(({ id, name }, i) => (
+        <div key={i}>
+          {name} o numerze id {id}
+          <button onClick={() => deleteWorker({ id })}>Usuń </button>
+        </div>
+      ))}
     </div>
-    <button onClick={() => createWorker({ name: "goj" })}>Dodaj goja</button>
+    <button onClick={() => createWorker({ name: "" })}>Dodaj </button>
   </div>
 );
 
