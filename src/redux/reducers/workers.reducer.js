@@ -3,8 +3,8 @@ import { Types } from "../actions/workers.actions";
 
 export const INITIAL_STATE = { workers: [] };
 
-export const SET = (state, { workers }) => {
-  return { ...state, workers };
+export const SET = (state, { data }) => {
+  return { ...state, data };
 };
 
 export const HANDLERS = {
