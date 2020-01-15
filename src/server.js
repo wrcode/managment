@@ -7,17 +7,24 @@ const server = express();
 server.use(cors());
 server.use(bodyParser.urlencoded({ extended: true }));
 
-const createResponseEndpoint = tableName =>
-  server.post(`/${tableName}`, (req, res) => {
-    db.getRows(tableName, {}, (succ, result) => {
+const createEndpoint = tableName => {
+  server.get(`/${tableName}`, (req, res) => {
+    db.getRows(tableName, {}, result => {
       res.setHeader("Content-Type", "application/json");
       res.end(JSON.stringify(result));
     });
   });
 
-createResponseEndpoint("workers");
-createResponseEndpoint("processes");
-createResponseEndpoint("fuel");
-createResponseEndpoint("raports");
+  server.post(`/${tableName}`, ({ params }) => {
+    db.insertTableContent(tableName, params, () => {
+      res.sendStatus(200);
+    });
+  });
+};
+
+createEndpoint("workers");
+createEndpoint("processes");
+createEndpoint("fuel");
+createEndpoint("raports");
 
 server.listen(8080);

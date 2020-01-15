@@ -10,6 +10,7 @@ build
 # misc
 .DS_Store
 .env
+debug.log
 npm-debug.log
 
 .idea
