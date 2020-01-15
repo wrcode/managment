@@ -23,8 +23,8 @@ const createEndpoint = tableName => {
 };
 
 createEndpoint("workers");
-createEndpoint("processes");
-createEndpoint("fuel");
-createEndpoint("raports");
+// createEndpoint("processes");
+// createEndpoint("fuel");
+// createEndpoint("raports");
 
 server.listen(8080);
