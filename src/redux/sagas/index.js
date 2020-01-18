@@ -17,6 +17,14 @@ function* createWorker({ data }) {
   } catch (e) {}
 }
 
+function* editWorker({ id }) {
+  try {
+    const worker = yield call(Api.editWorker, id);
+
+    yield put(Creators.edit(worker.data));
+  } catch (e) {}
+}
+
 function* deleteWorker({ id }) {
   try {
     yield call(Api.deleteWorker, id);
@@ -26,6 +34,7 @@ function* deleteWorker({ id }) {
 
 function* sagas() {
   yield takeLatest(Types.GET, getWorkers);
+  yield takeLatest(Types.GET_EDIT, editWorker);
   yield takeLatest(Types.SET, createWorker);
   yield takeLatest(Types.DROP, deleteWorker);
 }

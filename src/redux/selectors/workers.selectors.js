@@ -1,3 +1,3 @@
-import { prop } from "ramda";
+import { path } from "ramda";
 
-export const getWorkers = prop("workers");
+export const getWorkers = path(["workers", "workers"]);

@@ -1,31 +1,43 @@
-const endpoint = "//localhost:8080";
+import axios from "axios";
+const endpoint = "http://localhost:8080";
 
 const getWorkers = () =>
-  fetch(`${endpoint}/workers`).then(response => response.json());
+  axios.get(`${endpoint}/workers`).then(({ data }) => data);
 
 const createWorker = data =>
-  fetch(`${endpoint}/workers`, {
-    method: "POST",
-    headers: {
+  axios.post(
+    `${endpoint}/workers`,
+    { type: "create", ...data },
+    {
       Accept: "application/json",
       "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ type: "create", ...data })
-  });
+    }
+  );
 
 const deleteWorker = data =>
-  fetch(`${endpoint}/workers`, {
-    method: "POST",
-    headers: {
+  axios.post(
+    `${endpoint}/workers`,
+    { type: "delete", ...data },
+    {
       Accept: "application/json",
       "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ type: "delete", ...data })
-  });
+    }
+  );
+
+const editWorker = data =>
+  axios.post(
+    `${endpoint}/workers`,
+    { type: "edit", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
 
 const Api = {
   getWorkers,
   createWorker,
-  deleteWorker
+  deleteWorker,
+  editWorker
 };
 export default Api;

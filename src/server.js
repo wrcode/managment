@@ -33,13 +33,19 @@ const createEndpoint = tableName => {
           res.send({ ok: true });
         });
         break;
+
+      case "edit":
+        db.search(tableName, "id", body.id, (succ, data) => {
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify(data));
+        });
     }
   });
 };
 
 createEndpoint("workers");
-// createEndpoint("processes");
-// createEndpoint("fuel");
-// createEndpoint("raports");
+createEndpoint("processes");
+createEndpoint("fuel");
+createEndpoint("raports");
 
 server.listen(8080);
