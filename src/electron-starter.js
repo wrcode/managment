@@ -47,6 +47,10 @@ app.on("window-all-closed", function() {
   }
 });
 
+app.on("browser-window-created", function(e, window) {
+  window.setMenu(null);
+});
+
 app.on("activate", function() {
   if (mainWindow === null) {
     createWindow();
