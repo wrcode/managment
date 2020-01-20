@@ -11,5 +11,5 @@ export const { Types, Creators } = createActions(
     update: ["data"],
     reset: null
   },
-  { prefix: `@WORKERS/` }
+  { prefix: `@PROCESSES/` }
 );

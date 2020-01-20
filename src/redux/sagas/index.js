@@ -1,42 +1,35 @@
-import { call, put, takeLatest } from "redux-saga/effects";
-import { Creators, Types } from "../../redux/actions/workers.actions";
-import Api from "./api";
+import { takeLatest } from "redux-saga/effects";
+import { Types as workersTypes } from "../../redux/actions/workers.actions";
+import { Types as processesTypes } from "../../redux/actions/processes.actions";
 
-function* getWorkers(action) {
-  try {
-    const workers = yield call(Api.getWorkers);
+import {
+  getWorkers,
+  editWorker,
+  createWorker,
+  deleteWorker,
+  updateWorker
+} from "./workers.sagas";
 
-    yield put(Creators.add(workers));
-  } catch (e) {}
-}
-
-function* createWorker({ data }) {
-  try {
-    yield call(Api.createWorker, data);
-    yield put(Creators.get());
-  } catch (e) {}
-}
-
-function* editWorker({ id }) {
-  try {
-    const worker = yield call(Api.editWorker, id);
-
-    yield put(Creators.edit(worker.data));
-  } catch (e) {}
-}
-
-function* deleteWorker({ id }) {
-  try {
-    yield call(Api.deleteWorker, id);
-    yield put(Creators.get());
-  } catch (e) {}
-}
+import {
+  getProcesses,
+  editProcess,
+  createProcess,
+  deleteProcess,
+  updateProcess
+} from "./processes.sagas";
 
 function* sagas() {
-  yield takeLatest(Types.GET, getWorkers);
-  yield takeLatest(Types.GET_EDIT, editWorker);
-  yield takeLatest(Types.SET, createWorker);
-  yield takeLatest(Types.DROP, deleteWorker);
+  yield takeLatest(workersTypes.GET, getWorkers);
+  yield takeLatest(workersTypes.EDIT, editWorker);
+  yield takeLatest(workersTypes.SET, createWorker);
+  yield takeLatest(workersTypes.DROP, deleteWorker);
+  yield takeLatest(workersTypes.UPDATE, updateWorker);
+
+  yield takeLatest(processesTypes.GET, getProcesses);
+  yield takeLatest(processesTypes.EDIT, editProcess);
+  yield takeLatest(processesTypes.SET, createProcess);
+  yield takeLatest(processesTypes.DROP, deleteProcess);
+  yield takeLatest(processesTypes.UPDATE, updateProcess);
 }
 
 export default sagas;

@@ -35,10 +35,26 @@ const createEndpoint = tableName => {
         break;
 
       case "edit":
-        db.search(tableName, "id", body.id, (succ, data) => {
+        db.search(tableName, location, "id", body.id, (succ, data) => {
           res.setHeader("Content-Type", "application/json");
-          res.end(JSON.stringify(data));
+          res.end(JSON.stringify(...data));
         });
+
+        break;
+
+      case "update":
+        db.updateRow(
+          tableName,
+          location,
+          { id: body.id },
+          body,
+          (succ, data) => {
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify(data));
+          }
+        );
+
+        break;
     }
   });
 };

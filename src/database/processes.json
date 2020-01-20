@@ -1,3 +1,14 @@
 {
-  "processes": []
+  "processes": [
+    {
+      "number": "1251251/124",
+      "date": "testowa",
+      "material": 25,
+      "fuel": 10,
+      "carbon": 11,
+      "scrap": 9,
+      "overseer": 21525125,
+      "time": 5
+    }
+  ]
 }

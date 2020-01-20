@@ -1,64 +1,16 @@
 {
   "workers": [
     {
-      "type": "create",
-      "name": "goj",
-      "id": 1579212273457
-    },
-    {
-      "type": "create",
-      "name": "goj",
-      "id": 1579212274463
-    },
-    {
-      "type": "create",
-      "image": "125125125125.png",
-      "name": "goj",
-      "id": 1579271154822
-    },
-    {
-      "type": "create",
-      "name": "gojec lojkiestra",
-      "id": 1579288410244
-    },
-    {
-      "type": "create",
-      "name": "gojec lojkiestra",
-      "id": 1579288411001
-    },
-    {
-      "type": "create",
-      "name": "gojec lojkiestra",
-      "id": 1579288411497
-    },
-    {
-      "type": "create",
-      "name": "gojec lojkiestra",
-      "id": 1579288412327
-    },
-    {
-      "type": "create",
-      "id": 1579379372836
-    },
-    {
-      "type": "create",
-      "id": 1579379373648
-    },
-    {
-      "type": "create",
-      "id": 1579379374241
-    },
-    {
-      "type": "create",
-      "id": 1579420675314
-    },
-    {
-      "type": "create",
-      "id": 1579420675970
-    },
-    {
-      "type": "create",
-      "id": 1579421081279
+      "type": "update",
+      "name": "Michał",
+      "surname": "Wrona",
+      "salary": "26",
+      "address": "Zimna 2 Kielce",
+      "age": "25",
+      "position": "Programista",
+      "phone": "606114569",
+      "agreement": "2020-01-21T14:44:45.721Z",
+      "id": 1579462528987
     }
   ]
 }

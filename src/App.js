@@ -6,6 +6,7 @@ import "antd/dist/antd.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import CreateWorker from "./containers/Workers/CreateWorker";
 import Workers from "./containers/Workers";
+import Processes from "./containers/Processes";
 import Dashboard from "./containers/Dashboard";
 
 const { Header, Content } = Layout;
@@ -22,6 +23,8 @@ class App extends Component {
               <Route exact path="/" component={Dashboard} />
               <Route exact path="/workers" component={Workers} />
               <Route exact path="/workers/create" component={CreateWorker} />
+              <Route exact path="/workers/edit" component={CreateWorker} />
+              <Route exact path="/processes" component={Processes} />
             </Switch>
           </Content>
         </Router>

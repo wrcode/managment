@@ -34,10 +34,70 @@ const editWorker = data =>
     }
   );
 
+const updateWorker = data =>
+  axios.post(
+    `${endpoint}/workers`,
+    { type: "update", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+// Processes
+const getProcesses = () =>
+  axios.get(`${endpoint}/processes`).then(({ data }) => data);
+
+const createProcess = data =>
+  axios.post(
+    `${endpoint}/processes`,
+    { type: "create", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const deleteProcess = data =>
+  axios.post(
+    `${endpoint}/processes`,
+    { type: "delete", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const editProcess = data =>
+  axios.post(
+    `${endpoint}/processes`,
+    { type: "edit", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const updateProcess = data =>
+  axios.post(
+    `${endpoint}/processes`,
+    { type: "update", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
 const Api = {
   getWorkers,
   createWorker,
   deleteWorker,
-  editWorker
+  editWorker,
+  updateWorker,
+  getProcesses,
+  createProcess,
+  deleteProcess,
+  editProcess,
+  updateProcess
 };
 export default Api;
