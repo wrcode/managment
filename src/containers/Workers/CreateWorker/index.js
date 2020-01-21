@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { Creators } from "../../../redux/actions/workers.actions";
-import { getWorker } from "../../../redux/selectors/workers.selectors";
+import { Creators } from "redux/actions/workers.actions";
+import { getWorker } from "redux/selectors/workers.selectors";
 import { Form } from "antd";
 import { compose, withProps, lifecycle } from "recompose";
 import CreateWorker from "./CreateWorker";
@@ -25,7 +25,6 @@ export default compose(
   withProps(({ form, addWorker, updateWorker, history, editData }) => ({
     handleSubmit: e => {
       e.preventDefault();
-      console.log(editData);
       editData
         ? updateWorker(form.getFieldsValue())
         : addWorker(form.getFieldsValue());

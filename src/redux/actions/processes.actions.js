@@ -1,15 +1,6 @@
 import { createActions } from "reduxsauce";
+import { createDefaultActions } from "./index";
 
-export const { Types, Creators } = createActions(
-  {
-    get: [],
-    set: ["data"],
-    add: ["data"],
-    drop: ["id"],
-    edit: ["id"],
-    setEdit: ["data"],
-    update: ["data"],
-    reset: null
-  },
-  { prefix: `@PROCESSES/` }
-);
+export const { Types, Creators } = createActions(createDefaultActions(), {
+  prefix: `@PROCESSES/`
+});

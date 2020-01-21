@@ -11,13 +11,13 @@ const Navigation = () => (
       <Link to="/processes">Processes</Link>
     </Menu.Item>
     <Menu.Item key="3">
-      <Link to="/raports">Raports</Link>
-    </Menu.Item>
-    <Menu.Item key="4">
       <Link to="/workers">Workers</Link>
     </Menu.Item>
+    <Menu.Item key="4">
+      <Link to="/advances">Advances</Link>
+    </Menu.Item>
     <Menu.Item key="5">
-      <Link to="/processes">Fuel</Link>
+      <Link to="/documents">Documents</Link>
     </Menu.Item>
   </Menu>
 );

@@ -27,7 +27,7 @@ export function* editWorker({ id }) {
 
 export function* updateWorker({ data }) {
   try {
-    const worker = yield call(Api.updateWorker, data);
+    yield call(Api.updateWorker, data);
 
     yield put(Creators.get());
   } catch (e) {}

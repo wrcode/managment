@@ -1,14 +1,28 @@
 {
   "processes": [
     {
-      "number": "1251251/124",
-      "date": "testowa",
-      "material": 25,
-      "fuel": 10,
-      "carbon": 11,
-      "scrap": 9,
-      "overseer": 21525125,
-      "time": 5
+      "type": "update",
+      "number": "125125",
+      "date": "2020-01-14T18:49:39.780Z",
+      "material": "125",
+      "fuel": "12515",
+      "carbon": "127",
+      "scrap": "123",
+      "overseer": 1579462528987,
+      "time": "465",
+      "id": 1579546188519
+    },
+    {
+      "type": "create",
+      "number": "364646",
+      "date": "2020-01-22T12:23:19.766Z",
+      "material": "255125125",
+      "fuel": "1115215",
+      "carbon": "125125",
+      "scrap": "125125",
+      "overseer": 1579609036157,
+      "time": "4612515",
+      "id": 1579609410626
     }
   ]
 }

@@ -4,8 +4,13 @@ const bodyParser = require("body-parser");
 const db = require("electron-db");
 const server = express();
 const path = require("path");
+const fs = require("fs");
+const Busboy = require("busboy");
+const HttpStatus = require("http-status-codes");
+const morgan = require("morgan");
 
 server.use(cors());
+server.use(morgan("combined"));
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use(bodyParser.raw());
@@ -59,9 +64,39 @@ const createEndpoint = tableName => {
   });
 };
 
+server.post("/image", (req, res) => {
+  const fileNameNew = `${Date.now()}.jpg`;
+  var busboy = new Busboy({
+    headers: req.headers
+  });
+
+  busboy.on("file", function(fieldname, file) {
+    file.pipe(
+      fs.createWriteStream(
+        path.join(__dirname, "./database/images", fileNameNew)
+      )
+    );
+  });
+  busboy.on("finish", function() {
+    res.writeHead(HttpStatus.OK, {
+      Connection: "close"
+    });
+
+    res.end(JSON.stringify({ fileName: fileNameNew }));
+  });
+  return req.pipe(busboy);
+});
+
+server.post("/img", function(req, res) {
+  res.setHeader("Content-Type", "image/jpg");
+  res.sendFile(path.join(__dirname, "./database/images", req.body.image));
+});
+
 createEndpoint("workers");
 createEndpoint("processes");
 createEndpoint("fuel");
 createEndpoint("raports");
+createEndpoint("advances");
+createEndpoint("documents");
 
 server.listen(8080);

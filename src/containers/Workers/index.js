@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import { getWorkers } from "../../redux/selectors/workers.selectors";
-import { Creators } from "../../redux/actions/workers.actions";
+import { getWorkers } from "redux/selectors/workers.selectors";
+import { Creators } from "redux/actions/workers.actions";
 import { compose, lifecycle, mapProps } from "recompose";
 import { withRouter } from "react-router-dom";
 import Workers from "./Workers";
@@ -26,7 +26,7 @@ export default compose(
   mapProps(({ editWorker, history, ...props }) => ({
     editWorker: id => {
       editWorker(id);
-      history.push("/workers/edit");
+      history.push("/worker/edit");
     },
     ...props
   }))

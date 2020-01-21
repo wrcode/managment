@@ -6,11 +6,23 @@
       "surname": "Wrona",
       "salary": "26",
       "address": "asdasdasd",
-      "age": "25",
+      "age": "253",
       "position": "Programista",
       "phone": "125125125",
       "agreement": "2020-01-21T14:44:45.721Z",
       "id": 1579462528987
+    },
+    {
+      "type": "create",
+      "name": "Pawel",
+      "surname": "Wojcik",
+      "salary": "11",
+      "address": "Warszawsk 20",
+      "age": "25",
+      "position": "Opałownika",
+      "phone": "6162161612616",
+      "agreement": "2020-01-14T12:17:13.760Z",
+      "id": 1579609036157
     }
   ]
 }

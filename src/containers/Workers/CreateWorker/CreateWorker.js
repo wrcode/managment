@@ -1,16 +1,6 @@
 import React from "react";
 import { prop } from "ramda";
-import {
-  PageHeader,
-  Button,
-  Form,
-  Input,
-  Row,
-  Col,
-  DatePicker,
-  Badge,
-  Divider
-} from "antd";
+import { PageHeader, Button, Form, Input, Row, Col, DatePicker } from "antd";
 import moment from "moment";
 
 const CreateWorker = ({ handleSubmit, editData, form }) => {
@@ -20,7 +10,7 @@ const CreateWorker = ({ handleSubmit, editData, form }) => {
       <PageHeader
         ghost={false}
         onBack={() => window.history.back()}
-        title="Create Worker"
+        title={editData ? "Update Worker" : "Create Worker"}
         extra={[
           <Button form="workerForm" key="submit" htmlType="submit">
             {editData ? "Update" : "Submit"}
@@ -28,7 +18,11 @@ const CreateWorker = ({ handleSubmit, editData, form }) => {
         ]}
       ></PageHeader>
 
-      <Form id="workerForm" onSubmit={handleSubmit}>
+      <Form
+        id="workerForm"
+        style={{ padding: "0 25px" }}
+        onSubmit={handleSubmit}
+      >
         <Row>
           <Col span={12}>
             <Form.Item label="Name">

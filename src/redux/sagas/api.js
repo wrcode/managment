@@ -88,6 +88,96 @@ const updateProcess = data =>
     }
   );
 
+// Advances
+
+const getAdvances = () =>
+  axios.get(`${endpoint}/advances`).then(({ data }) => data);
+
+const createAdvance = data =>
+  axios.post(
+    `${endpoint}/advances`,
+    { type: "create", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const deleteAdvance = data =>
+  axios.post(
+    `${endpoint}/advances`,
+    { type: "delete", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const editAdvance = data =>
+  axios.post(
+    `${endpoint}/advances`,
+    { type: "edit", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const updateAdvance = data =>
+  axios.post(
+    `${endpoint}/advances`,
+    { type: "update", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+// Documents
+
+const getDocuments = () =>
+  axios.get(`${endpoint}/documents`).then(({ data }) => data);
+
+const createDocument = data =>
+  axios.post(
+    `${endpoint}/documents`,
+    { type: "create", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const deleteDocument = data =>
+  axios.post(
+    `${endpoint}/documents`,
+    { type: "delete", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const editDocument = data =>
+  axios.post(
+    `${endpoint}/documents`,
+    { type: "edit", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const updateDocument = data =>
+  axios.post(
+    `${endpoint}/documents`,
+    { type: "update", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
 const Api = {
   getWorkers,
   createWorker,
@@ -98,6 +188,16 @@ const Api = {
   createProcess,
   deleteProcess,
   editProcess,
-  updateProcess
+  updateProcess,
+  getAdvances,
+  createAdvance,
+  deleteAdvance,
+  editAdvance,
+  updateAdvance,
+  getDocuments,
+  createDocument,
+  deleteDocument,
+  editDocument,
+  updateDocument
 };
 export default Api;
