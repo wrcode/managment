@@ -1,11 +1,18 @@
 import React from "react";
-import { PageHeader, Button, Table, Divider } from "antd";
+import { PageHeader, Button, Table, Divider, Input, Form } from "antd";
 import { Link } from "react-router-dom";
 import moment from "moment";
 
 const { Column } = Table;
 
-const Documents = ({ documents, deleteDocument, editDocument }) => (
+const Documents = ({
+  documents,
+  deleteDocument,
+  editDocument,
+  searchDocuments,
+  fetchDocuments,
+  form
+}) => (
   <>
     <PageHeader
       ghost={false}
@@ -17,7 +24,43 @@ const Documents = ({ documents, deleteDocument, editDocument }) => (
         </Button>
       ]}
     ></PageHeader>
-
+    <Form
+      layout="inline"
+      style={{ padding: "14px 24px" }}
+      onSubmit={searchDocuments}
+    >
+      <Form.Item>
+        {form.getFieldDecorator("name")(
+          <Input
+            placeholder="Document name"
+            disabled={form.getFieldValue("documentType")}
+          />
+        )}
+      </Form.Item>
+      <Form.Item>
+        {form.getFieldDecorator("documentType")(
+          <Input
+            placeholder="Document type"
+            disabled={form.getFieldValue("name")}
+          />
+        )}
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Search
+        </Button>
+        <Divider type="vertical" />
+        <Button
+          type="ghost"
+          onClick={() => {
+            form.resetFields();
+            fetchDocuments();
+          }}
+        >
+          Clear
+        </Button>
+      </Form.Item>
+    </Form>
     <Table style={{ padding: "0 25px" }} dataSource={documents}>
       <Column title="Name" dataIndex="name" key="name" />
       <Column
@@ -41,7 +84,11 @@ const Documents = ({ documents, deleteDocument, editDocument }) => (
         title="Image"
         key="image"
         render={(t, { image }) => (
-          <a onClick={() => window.open(`file://images/${image}`, null)}>
+          <a
+            onClick={() =>
+              window.open(`http://localhost:8080/test?name=${image}`, null)
+            }
+          >
             {image}
           </a>
         )}

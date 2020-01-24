@@ -19,24 +19,6 @@ function createDatabse() {
 function createWindow() {
   createDatabse();
 
-  const DATABASE = "database";
-  const PROTOCOL = "file";
-
-  electron.protocol.interceptFileProtocol(PROTOCOL, (request, callback) => {
-    // // Strip protocol
-    let url = request.url.substr(PROTOCOL.length + 1);
-
-    // Build complete path for node require function
-    url = path.join(__dirname, DATABASE, url);
-
-    // Replace backslashes by forward slashes (windows)
-    // url = url.replace(/\\/g, '/');
-    url = path.normalize(url);
-
-    console.log(url);
-    callback({ path: url });
-  });
-
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 1024,

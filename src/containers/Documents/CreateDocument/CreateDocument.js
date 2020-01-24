@@ -13,7 +13,14 @@ import {
 } from "antd";
 import moment from "moment";
 
-const CreateDocument = ({ handleSubmit, editData, form, image, addImage }) => {
+const CreateDocument = ({
+  handleSubmit,
+  editData,
+  form,
+  image,
+  addImage,
+  id
+}) => {
   const { getFieldDecorator } = form;
   const UploadProps = {
     name: "file",
@@ -34,10 +41,10 @@ const CreateDocument = ({ handleSubmit, editData, form, image, addImage }) => {
       <PageHeader
         ghost={false}
         onBack={() => window.history.back()}
-        title={editData ? "Update Document" : "Create Document"}
+        title={id ? "Update Document" : "Create Document"}
         extra={[
           <Button form="documentForm" key="submit" htmlType="submit">
-            {editData ? "Update" : "Submit"}
+            {id ? "Update" : "Submit"}
           </Button>
         ]}
       ></PageHeader>

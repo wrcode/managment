@@ -2,30 +2,12 @@
   "documents": [
     {
       "type": "update",
-      "name": "Test document names",
-      "date": "2020-01-23T16:28:49.596Z",
-      "documentType": "Fakturas",
-      "documentDate": "2019-12-31T16:28:52.067Z",
-      "image": "1579624137263.jpg",
-      "id": 1579624138299
-    },
-    {
-      "type": "create",
-      "name": "Pwael",
-      "date": "2020-02-07T19:43:29.006Z",
-      "documentType": "Paragon",
-      "documentDate": "2020-01-15T19:43:35.754Z",
-      "image": "1579635824271.jpg",
-      "id": 1579635828934
-    },
-    {
-      "type": "update",
-      "name": "hdfhdfaaa",
-      "date": "2020-01-09T19:45:03.964Z",
-      "documentType": "125125aaa",
-      "documentDate": "2020-01-18T19:45:17.192Z",
-      "image": "1579635910928.jpg",
-      "id": 1579635912553
+      "name": "Urząd miasta Kielce",
+      "date": "2019-12-31T14:51:45.435Z",
+      "documentType": "Faktura",
+      "documentDate": "2020-01-10T14:51:47.448Z",
+      "image": "1579704744028.jpg",
+      "id": 1579704745507
     }
   ]
 }

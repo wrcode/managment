@@ -3,10 +3,11 @@ import { getDocuments } from "redux/selectors/documents.selectors";
 import { Creators } from "redux/actions/documents.actions";
 import { compose, lifecycle, mapProps } from "recompose";
 import { withRouter } from "react-router-dom";
+import { Form } from "antd";
 import Documents from "./Documents";
 
 const mapDispatchToProps = {
-  fetchDocument: Creators.get,
+  fetchDocuments: Creators.get,
   deleteDocument: Creators.drop,
   editDocument: Creators.edit
 };
@@ -16,18 +17,25 @@ const mapStateToProps = state => ({
 });
 
 function componentDidMount() {
-  this.props.fetchDocument();
+  this.props.fetchDocuments();
 }
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({ componentDidMount }),
   withRouter,
-  mapProps(({ editDocument, history, ...props }) => ({
+  Form.create({ name: "documentsForm" }),
+  mapProps(({ form, editDocument, history, fetchDocuments, ...props }) => ({
     editDocument: id => {
       editDocument(id);
       history.push("/document/edit");
     },
+    searchDocuments: e => {
+      e.preventDefault();
+      fetchDocuments(form.getFieldsValue());
+    },
+    form,
+    fetchDocuments,
     ...props
   }))
 )(Documents);

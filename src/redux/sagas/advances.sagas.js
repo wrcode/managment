@@ -1,10 +1,10 @@
 import { call, put } from "redux-saga/effects";
-import { Creators } from "../../redux/actions/advances.actions";
+import { Creators } from "redux/actions/advances.actions";
 import Api from "./api";
 
-export function* getAdvances(action) {
+export function* getAdvances({ data = {} }) {
   try {
-    const advances = yield call(Api.getAdvances);
+    const advances = yield call(Api.getAdvances, data);
 
     yield put(Creators.add(advances));
   } catch (e) {}

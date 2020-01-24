@@ -2,7 +2,7 @@ import { createActions } from "reduxsauce";
 
 export const { Types, Creators } = createActions(
   {
-    get: [],
+    get: ["data"],
     set: ["data"],
     add: ["data"],
     drop: ["id"],

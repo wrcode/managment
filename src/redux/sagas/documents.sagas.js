@@ -2,9 +2,9 @@ import { call, put } from "redux-saga/effects";
 import { Creators } from "redux/actions/documents.actions";
 import Api from "./api";
 
-export function* getDocuments() {
+export function* getDocuments({ data = {} }) {
   try {
-    const documents = yield call(Api.getDocuments);
+    const documents = yield call(Api.getDocuments, data);
 
     yield put(Creators.add(documents));
   } catch (e) {}

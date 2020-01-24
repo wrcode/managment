@@ -4,6 +4,7 @@ import { getWorkers } from "redux/selectors/workers.selectors";
 import { Creators as WorkersActions } from "redux/actions/workers.actions";
 import { Creators as ProcessesActions } from "redux/actions/processes.actions";
 import { compose, lifecycle, mapProps } from "recompose";
+import { Form } from "antd";
 import { withRouter } from "react-router-dom";
 import Processes from "./Processes";
 
@@ -28,11 +29,14 @@ export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   lifecycle({ componentDidMount }),
   withRouter,
-  mapProps(({ editProcess, history, ...props }) => ({
+  Form.create({ name: "processesForm" }),
+  mapProps(({ editProcess, history, form, ...props }) => ({
     editProcess: id => {
       editProcess(id);
       history.push("/process/edit");
     },
+    selectedMonth: form.getFieldValue("month"),
+    form,
     ...props
   }))
 )(Processes);

@@ -8,6 +8,7 @@ const fs = require("fs");
 const Busboy = require("busboy");
 const HttpStatus = require("http-status-codes");
 const morgan = require("morgan");
+const r = require("ramda");
 
 server.use(cors());
 server.use(morgan("combined"));
@@ -19,10 +20,23 @@ const location = path.join(__dirname, "database");
 
 const createEndpoint = tableName => {
   server.get(`/${tableName}`, (req, res) => {
-    db.getAll(tableName, location, (succ, data) => {
-      res.setHeader("Content-Type", "application/json");
-      res.end(JSON.stringify(data));
-    });
+    if (r.isEmpty(req.query)) {
+      db.getAll(tableName, location, (succ, data) => {
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify(data));
+      });
+    } else {
+      db.search(
+        tableName,
+        location,
+        Object.keys(req.query)[0],
+        req.query[Object.keys(req.query)[0]],
+        (succ, data) => {
+          res.setHeader("Content-Type", "application/json");
+          res.end(JSON.stringify(data));
+        }
+      );
+    }
   });
 
   server.post(`/${tableName}`, ({ body }, res) => {
@@ -87,9 +101,9 @@ server.post("/image", (req, res) => {
   return req.pipe(busboy);
 });
 
-server.post("/img", function(req, res) {
+server.get("/test", function(req, res) {
   res.setHeader("Content-Type", "image/jpg");
-  res.sendFile(path.join(__dirname, "./database/images", req.body.image));
+  res.sendFile(path.join(__dirname, "./database/images/", req.query.name));
 });
 
 createEndpoint("workers");
@@ -98,5 +112,7 @@ createEndpoint("fuel");
 createEndpoint("raports");
 createEndpoint("advances");
 createEndpoint("documents");
-
+createEndpoint("payments");
+createEndpoint("incomes");
+createEndpoint("expenses");
 server.listen(8080);

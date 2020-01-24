@@ -1,7 +1,8 @@
 import axios from "axios";
+
 const endpoint = "http://localhost:8080";
 
-const getWorkers = () =>
+const getWorkers = data =>
   axios.get(`${endpoint}/workers`).then(({ data }) => data);
 
 const createWorker = data =>
@@ -90,8 +91,12 @@ const updateProcess = data =>
 
 // Advances
 
-const getAdvances = () =>
-  axios.get(`${endpoint}/advances`).then(({ data }) => data);
+const getAdvances = ({ worker }) =>
+  axios
+    .get(`${endpoint}/advances`, {
+      params: { ...(worker && { worker }) }
+    })
+    .then(({ data }) => data);
 
 const createAdvance = data =>
   axios.post(
@@ -135,8 +140,12 @@ const updateAdvance = data =>
 
 // Documents
 
-const getDocuments = () =>
-  axios.get(`${endpoint}/documents`).then(({ data }) => data);
+const getDocuments = ({ name, documentType }) =>
+  axios
+    .get(`${endpoint}/documents`, {
+      params: { ...(name && { name }), ...(documentType && { documentType }) }
+    })
+    .then(({ data }) => data);
 
 const createDocument = data =>
   axios.post(

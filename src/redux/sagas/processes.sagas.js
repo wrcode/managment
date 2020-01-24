@@ -1,5 +1,5 @@
 import { call, put } from "redux-saga/effects";
-import { Creators } from "../../redux/actions/processes.actions";
+import { Creators } from "redux/actions/processes.actions";
 import Api from "./api";
 
 export function* getProcesses(action) {

@@ -19,6 +19,9 @@ const Navigation = () => (
     <Menu.Item key="5">
       <Link to="/documents">Documents</Link>
     </Menu.Item>
+    <Menu.Item key="6">
+      <Link>Payments</Link>
+    </Menu.Item>
   </Menu>
 );
 
