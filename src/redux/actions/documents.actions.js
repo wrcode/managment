@@ -1,17 +1,7 @@
 import { createActions } from "reduxsauce";
-
+import { createDefaultActions } from "./index";
 export const { Types, Creators } = createActions(
-  {
-    get: ["data"],
-    set: ["data"],
-    add: ["data"],
-    drop: ["id"],
-    edit: ["id"],
-    setEdit: ["data"],
-    update: ["data"],
-    addImage: ["data"],
-    reset: null
-  },
+  createDefaultActions({ addImage: ["data"] }),
   {
     prefix: `@DOCUMENTS/`
   }

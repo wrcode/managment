@@ -21,8 +21,7 @@ const CreatePayment = ({
   workers,
   form,
   advancesAmount,
-  workerSalary,
-  workerID
+  workerSalary
 }) => {
   return (
     <>

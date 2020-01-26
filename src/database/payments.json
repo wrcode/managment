@@ -2,10 +2,10 @@
   "payments": [
     {
       "type": "update",
-      "total": "328.50",
+      "total": "328.49",
       "hours": "180",
       "salary": "11",
-      "deductions": "150.5",
+      "deductions": "150.51",
       "advances": 1501,
       "worker": 1579609036157,
       "month": "2020-01-25T19:09:04.738Z",
