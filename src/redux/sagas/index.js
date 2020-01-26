@@ -1,8 +1,9 @@
 import { takeLatest } from "redux-saga/effects";
-import { Types as workersTypes } from "../../redux/actions/workers.actions";
-import { Types as processesTypes } from "../../redux/actions/processes.actions";
-import { Types as advancesTypes } from "../../redux/actions/advances.actions";
-import { Types as documentsTypes } from "../../redux/actions/documents.actions";
+import { Types as workersTypes } from "redux/actions/workers.actions";
+import { Types as processesTypes } from "redux/actions/processes.actions";
+import { Types as advancesTypes } from "redux/actions/advances.actions";
+import { Types as documentsTypes } from "redux/actions/documents.actions";
+import { Types as paymentsTypes } from "redux/actions/payments.actions";
 
 import {
   getWorkers,
@@ -36,6 +37,14 @@ import {
   updateDocument
 } from "./documents.sagas";
 
+import {
+  getPayments,
+  editPayment,
+  createPayment,
+  deletePayment,
+  updatePayment
+} from "./payments.sagas";
+
 function* sagas() {
   yield takeLatest(workersTypes.GET, getWorkers);
   yield takeLatest(workersTypes.EDIT, editWorker);
@@ -60,6 +69,12 @@ function* sagas() {
   yield takeLatest(documentsTypes.SET, createDocument);
   yield takeLatest(documentsTypes.DROP, deleteDocument);
   yield takeLatest(documentsTypes.UPDATE, updateDocument);
+
+  yield takeLatest(paymentsTypes.GET, getPayments);
+  yield takeLatest(paymentsTypes.EDIT, editPayment);
+  yield takeLatest(paymentsTypes.SET, createPayment);
+  yield takeLatest(paymentsTypes.DROP, deletePayment);
+  yield takeLatest(paymentsTypes.UPDATE, updatePayment);
 }
 
 export default sagas;

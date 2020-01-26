@@ -187,6 +187,50 @@ const updateDocument = data =>
     }
   );
 
+// Payments
+
+const getPayments = () =>
+  axios.get(`${endpoint}/payments`).then(({ data }) => data);
+
+const createPayment = data =>
+  axios.post(
+    `${endpoint}/payments`,
+    { type: "create", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const deletePayment = data =>
+  axios.post(
+    `${endpoint}/payments`,
+    { type: "delete", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const editPayment = data =>
+  axios.post(
+    `${endpoint}/payments`,
+    { type: "edit", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
+
+const updatePayment = data =>
+  axios.post(
+    `${endpoint}/payments`,
+    { type: "update", ...data },
+    {
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }
+  );
 const Api = {
   getWorkers,
   createWorker,
@@ -207,6 +251,11 @@ const Api = {
   createDocument,
   deleteDocument,
   editDocument,
-  updateDocument
+  updateDocument,
+  getPayments,
+  createPayment,
+  deletePayment,
+  editPayment,
+  updatePayment
 };
 export default Api;

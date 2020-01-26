@@ -84,13 +84,13 @@ const Documents = ({
         title="Image"
         key="image"
         render={(t, { image }) => (
-          <a
+          <Button
             onClick={() =>
               window.open(`http://localhost:8080/test?name=${image}`, null)
             }
           >
             {image}
-          </a>
+          </Button>
         )}
       />
       <Column

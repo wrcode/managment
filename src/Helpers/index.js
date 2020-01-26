@@ -1,6 +1,12 @@
 import { pipe, head, filter, prop, map, length } from "ramda";
 import moment from "moment";
 
+export const getWorkerByID = (workerID, workers) =>
+  pipe(
+    filter(({ id }) => id === workerID),
+    head
+  )(workers);
+
 export const getWorkerNameByID = (workerID, workers) =>
   pipe(
     filter(({ id }) => id === workerID),
@@ -29,6 +35,19 @@ export const getAdvancesAmount = (data, currentMonth) => {
   return adv.reduce((acc, { amount }) => Number(acc) + Number(amount), 0);
 };
 
+export const getPaymentsAmount = (data, currentMonth) => {
+  const adv = filter(({ month }) =>
+    moment(month).isSame(currentMonth, "month")
+  )(data);
+
+  return adv.reduce((acc, { total }) => Number(acc) + Number(total), 0);
+};
+
+export const getPaymentsCount = (data, currentMonth) =>
+  pipe(
+    filter(({ month }) => moment(month).isSame(currentMonth, "month")),
+    length
+  )(data);
 export const getProcessesAmount = (data, currentDate) => {
   const adv = filter(({ date }) => moment(date).isSame(currentDate, "month"))(
     data
@@ -49,3 +68,9 @@ export const getProcessesAmount = (data, currentDate) => {
     }
   );
 };
+
+export const getWorkerById = (workers, workerID) =>
+  pipe(
+    filter(({ id }) => id === workerID),
+    head
+  )(workers);

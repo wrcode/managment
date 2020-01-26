@@ -20,7 +20,7 @@ const Navigation = () => (
       <Link to="/documents">Documents</Link>
     </Menu.Item>
     <Menu.Item key="6">
-      <Link>Payments</Link>
+      <Link to="/payments">Payments</Link>
     </Menu.Item>
   </Menu>
 );

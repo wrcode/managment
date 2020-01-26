@@ -9,12 +9,14 @@ import CreateWorker from "./containers/Workers/CreateWorker";
 import CreateProcess from "./containers/Processes/CreateProcess";
 import CreateAdvance from "./containers/Advances/CreateAdvance";
 import CreateDocument from "./containers/Documents/CreateDocument";
+import CreatePayment from "./containers/Payments/CreatePayment";
 
 import Workers from "./containers/Workers";
 import Processes from "./containers/Processes";
 import Advances from "./containers/Advances";
 import Dashboard from "./containers/Dashboard";
 import Documents from "./containers/Documents";
+import Payments from "./containers/Payments";
 
 const { Header, Content } = Layout;
 class App extends Component {
@@ -43,6 +45,10 @@ class App extends Component {
               <Route exact path="/documents" component={Documents} />
               <Route exact path="/document/create" component={CreateDocument} />
               <Route exact path="/document/edit" component={CreateDocument} />
+
+              <Route exact path="/payments" component={Payments} />
+              <Route exact path="/payment/create" component={CreatePayment} />
+              <Route exact path="/payment/edit" component={CreatePayment} />
             </Switch>
           </Content>
         </Router>

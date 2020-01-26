@@ -22,6 +22,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 1024,
+    icon: __dirname + "./icon",
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false
@@ -36,7 +37,7 @@ function createWindow() {
       slashes: true
     });
   mainWindow.loadURL(startUrl);
-  mainWindow.webContents.openDevTools();
+
   mainWindow.on("closed", function() {
     mainWindow = null;
   });

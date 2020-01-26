@@ -10,9 +10,19 @@ export function* getPayments(action) {
   } catch (e) {}
 }
 
-export function* createPayment({ data }) {
+export function* createPayment({
+  data: { hours, salary, deductions, advances, ...props }
+}) {
+  const total = hours * salary - deductions - advances;
   try {
-    yield call(Api.createPayment, data);
+    yield call(Api.createPayment, {
+      total: total.toFixed(2),
+      hours,
+      salary,
+      deductions,
+      advances,
+      ...props
+    });
     yield put(Creators.get());
   } catch (e) {}
 }
@@ -25,9 +35,19 @@ export function* editPayment({ id }) {
   } catch (e) {}
 }
 
-export function* updatePayment({ data }) {
+export function* updatePayment({
+  data: { hours, salary, deductions, advances, ...props }
+}) {
+  const total = hours * salary - deductions - advances;
   try {
-    yield call(Api.updatePayment, data);
+    yield call(Api.updatePayment, {
+      total: total.toFixed(2),
+      hours,
+      salary,
+      deductions,
+      advances,
+      ...props
+    });
 
     yield put(Creators.get());
   } catch (e) {}
