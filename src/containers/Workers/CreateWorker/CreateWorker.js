@@ -1,10 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { prop } from "ramda";
 import { PageHeader, Button, Form, Input, Row, Col, DatePicker } from "antd";
+import { Creators as workerActions } from "redux/actions/workers.actions";
+import { getWorker } from "redux/selectors/workers.selectors";
 import moment from "moment";
 
-const CreateWorker = ({ handleSubmit, editData, form }) => {
+const CreateWorker = ({ form, history }) => {
+  const d = useDispatch();
+  const editData = useSelector(getWorker);
   const { getFieldDecorator } = form;
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    editData
+      ? d(workerActions.update(form.getFieldsValue()))
+      : d(workerActions.set(form.getFieldsValue()));
+    history.push("/workers");
+  };
+
+  useEffect(() => {
+    d(workerActions.reset());
+  }, []);
+
   return (
     <>
       <PageHeader
@@ -86,4 +104,4 @@ const CreateWorker = ({ handleSubmit, editData, form }) => {
   );
 };
 
-export default CreateWorker;
+export default Form.create({ name: "workerForm" })(CreateWorker);

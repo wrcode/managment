@@ -22,7 +22,7 @@ function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 1024,
-    icon: __dirname + "./icon",
+    icon: __dirname + "./icon.png",
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false

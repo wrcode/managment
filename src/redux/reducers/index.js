@@ -3,6 +3,7 @@ import processes from "./processes.reducer";
 import advances from "./advances.reducer";
 import documents from "./documents.reducer";
 import payments from "./payments.reducer";
+import transactions from "./transactions.reducer";
 
 import { combineReducers } from "redux";
 
@@ -11,5 +12,6 @@ export default combineReducers({
   advances,
   processes,
   workers,
-  payments
+  payments,
+  transactions
 });

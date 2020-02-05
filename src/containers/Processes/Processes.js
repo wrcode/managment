@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import {
   PageHeader,
   Button,
@@ -11,23 +12,32 @@ import {
 import { getProcessesAmount } from "helpers";
 import { Link } from "react-router-dom";
 import { getWorkerNameByID } from "helpers";
+import { getProcesses } from "redux/selectors/processes.selectors";
+import { getWorkers } from "redux/selectors/workers.selectors";
+import { Creators as WorkersActions } from "redux/actions/workers.actions";
+import { Creators as ProcessesActions } from "redux/actions/processes.actions";
+import { compose } from "recompose";
+import { withRouter } from "react-router-dom";
 import moment from "moment";
 
 const { Column } = Table;
 const { MonthPicker } = DatePicker;
 
-const Processes = ({
-  processes,
-  workers,
-  editProcess,
-  deleteProcess,
-  selectedMonth,
-  form
-}) => {
+const Processes = ({ form, history }) => {
+  const d = useDispatch();
+  const processes = useSelector(getProcesses);
+  const workers = useSelector(getWorkers);
+  const selectedMonth = form.getFieldValue("month");
   const { material, fuel, scrap, carbon } = getProcessesAmount(
     processes,
     selectedMonth
   );
+
+  useEffect(() => {
+    d(WorkersActions.get());
+    d(ProcessesActions.get());
+  }, []);
+
   return (
     <>
       <PageHeader
@@ -120,11 +130,22 @@ const Processes = ({
           key="action"
           render={(t, { id }) => (
             <>
-              <Button type="primary" onClick={() => editProcess({ id })} ghost>
+              <Button
+                type="primary"
+                onClick={() => {
+                  d(ProcessesActions.edit({ id }));
+                  history.push("/process/edit");
+                }}
+                ghost
+              >
                 Edit
               </Button>
               <Divider type="vertical" />
-              <Button onClick={() => deleteProcess({ id })} type="danger" ghost>
+              <Button
+                onClick={() => d(ProcessesActions.drop({ id }))}
+                type="danger"
+                ghost
+              >
                 Delete
               </Button>
             </>
@@ -135,4 +156,7 @@ const Processes = ({
   );
 };
 
-export default Processes;
+export default compose(
+  withRouter,
+  Form.create({ name: "processesForm" })
+)(Processes);

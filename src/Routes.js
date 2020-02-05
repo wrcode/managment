@@ -10,6 +10,7 @@ import Advances from "./containers/Advances";
 import Dashboard from "./containers/Dashboard";
 import Documents from "./containers/Documents";
 import Payments from "./containers/Payments";
+import Transactions from "./containers/Transactions";
 
 export const ROUTES = [
   {
@@ -87,5 +88,11 @@ export const ROUTES = [
   {
     path: "/payment/edit",
     component: CreatePayment
+  },
+  {
+    path: "/trasnactions",
+    component: Transactions,
+    navigation: true,
+    label: "Transactions"
   }
 ];

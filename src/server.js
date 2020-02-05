@@ -114,5 +114,5 @@ createEndpoint("advances");
 createEndpoint("documents");
 createEndpoint("payments");
 createEndpoint("incomes");
-createEndpoint("expenses");
+createEndpoint("transactions");
 server.listen(8080);

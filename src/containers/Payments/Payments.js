@@ -2,11 +2,17 @@ import React from "react";
 import { PageHeader, Button, Table, Divider } from "antd";
 import { Link } from "react-router-dom";
 import { getWorkerNameByID } from "helpers";
+import { BlobProvider, Document, Page } from "@react-pdf/renderer";
 import moment from "moment";
 
 const { Column } = Table;
 
 const Payments = ({ payments, deletePayment, editPayment, workers }) => {
+  const MyDoc = () => (
+    <Document>
+      <Page>ZYD</Page>
+    </Document>
+  );
   return (
     <>
       <PageHeader
@@ -73,6 +79,15 @@ const Payments = ({ payments, deletePayment, editPayment, workers }) => {
               <Divider type="vertical" />
               <Button onClick={() => deletePayment({ id })} type="danger" ghost>
                 Delete
+              </Button>
+              <Divider type="vertical" />
+              <Button type="danger" type="link">
+                <BlobProvider document={MyDoc}>
+                  {({ blob, url, loading, error }) => {
+                    // Do whatever you need with blob here
+                    return <div>There's something going on on the fly</div>;
+                  }}
+                </BlobProvider>
               </Button>
             </>
           )}
